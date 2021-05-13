@@ -1,0 +1,10 @@
+Monitor - Монитор
+Mouse - Мышка
+Keyboard - Клавиатура
+Speakers - Динамики
+Microphone - Микрофон
+Motherboard - Материнская плата
+Memory - Память
+Webcam - Веб Камера
+Microprocessor - Микропроцессор
+Interface - Интерфейс

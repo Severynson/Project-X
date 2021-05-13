@@ -55,8 +55,7 @@ class WordLists
         p el.chomp
         write = gets.upcase.chomp
 
-
-        while write != "#{el.upcase.split(" ").first}, #{el.upcase.split(" ").first}, #{el.upcase.split(" ").first}, #{el.upcase.split(" ").first}, #{el.upcase.split(" ").first}"
+        while write != "#{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}"
           puts " "
           puts "Your made some mistake, enter please correct translation of word."
           write = gets.upcase.chomp
@@ -66,10 +65,15 @@ class WordLists
     #     else
     #       puts false
     #     end
-      end
     # else
     #   return 0
-    end
+      end
+      end
+  end
+  end
+
+salo = WordLists.new
+salo.choosing
 
     puts "Now you can start second part of tests:"
 
@@ -87,6 +91,7 @@ class WordLists
     # else
     #   return 0
     # end
+
 
     ###########################
 
