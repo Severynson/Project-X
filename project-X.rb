@@ -94,6 +94,84 @@ salo.choosing
 
 
     ###########################
+puts "Hello, choose please the them that you are interested to learn:\n1- Git;\n2- Computer;\n3- Main terms;\n4- Create your own list."
+puts ""
+
+class ThirdStage
+  attr_accessor :git, :computer, :main_terms, :your_own_list
+
+  def third (git = 0, computer = 0, main_terms = 0, your_own_list = 0)
+    print "Your choice: "
+    input = gets.chomp
+    puts ""
+    puts "---List of words that you will meet in tests---"
+
+    if input == "1"
+      lines = {}
+      File.open("Git.txt") do |el|
+        lines = el.readlines
+        puts lines
+      end
+
+    elsif input == "2"
+      lines = []
+      File.open("Computer.txt") do |review_file|
+        lines = review_file.readlines
+        puts lines
+      end
+
+      #####
+
+    elsif input == "3"
+      lines = []
+      File.open("Main_Terms.txt") do |review_file|
+        lines = review_file.readlines
+        puts lines
+      end
+    end
+
+    puts " "
+    puts "Do you want to take the test?(yes/no)"
+    var = gets.chomp
+    if var == "yes"
+      puts "let`s start!"
+      element_check = lines.each do |el|
+        puts "***"
+        # p el.chomp
+
+        user_input = Thread.new do
+          p el.upcase.split(" - ").last.chomp
+          @write = gets.upcase.chomp
+          Thread.current[:value] = gets.chomp
+        end
+
+        timer = Thread.new { sleep 6; user_input.kill; puts }
+
+        user_input.join
+        if user_input[:value]
+          puts "User entered #{user_input[:value]}"
+        else
+          puts "Timer expired"
+        end
+
+        if @write != "#{el.upcase.split(" ").first}"
+          puts " "
+          puts "Your made some mistake, enter please correct translation of word."
+        elsif @write == "#{el.upcase.split(" ").first}"
+          puts "You are winner!"
+        end
+
+      end
+    else
+      return 0
+    end
+  end
+end
+
+test = ThirdStage.new
+test.third
+
+####
 
 
 
