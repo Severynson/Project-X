@@ -1,0 +1,10 @@
+Loop - Цикл
+Variable - Переменная
+Data - Данные
+Operator - Оператор
+Condition - Условие
+Console - Консоль
+Debuger - Дебаггер
+Run - Запустить
+File - Файл
+Ruby - Руби
