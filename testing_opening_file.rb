@@ -1,19 +1,37 @@
-hash = {
+# hash = ()
+File.open("Git.txt", "r+") do |file|
+  hash = file.readlines.to_s
+  # puts (el.file.split(" - ").last.chomp)
+  # elements = hash[0]
+  # hash.map do |elements|
+  #   elements.split(" - ")
+  # end
+  a = hash.split(/\w+/)
+  puts a
 
-  cat: "кіт",
-  fox: "лиса",
-  name: "ім'я",
-  dog: "собака"
-}
-lines = {}
-# File.open("Computer.txt", "r+") do |file|
-#   puts lines = file.read
+
+end
+
+#   # puts hash.readlines
+#
 # end
+# hash = file.to_h
+# hash.each do |key, value|
+#   puts key
+# end
+
+# hash = {
+#
+#   cat: "кітакі",
+#   fox: "лиса",
+#   name: "ім'я",
+#   dog: "собака"
+# }
 
 hash.each do |key, value|
   puts key
   user = gets.chomp!
-  if value == user.s
+  if value == user
     puts "good"
   else
     while value != user do
@@ -40,5 +58,4 @@ hash.each do |key, value|
   end
 
 end
-
 

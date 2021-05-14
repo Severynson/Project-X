@@ -1,11 +1,11 @@
 hash = {
 
-  cat: "кіт",
+  cat: "кітакі",
   fox: "лиса",
   name: "ім'я",
   dog: "собака"
 }
-lines = {}
+# lines = {}
 # File.open("Computer.txt", "r+") do |file|
 #   puts lines = file.read
 # end
@@ -13,7 +13,7 @@ lines = {}
 hash.each do |key, value|
   puts key
   user = gets.chomp!
-  if value == user.s
+  if value == user
     puts "good"
   else
     while value != user do
