@@ -79,15 +79,22 @@ def input_for_choosing_them(input)
     #####
   elsif input == "4"
     own_wordlist
+    return 0
     #####
   elsif input == "5"
+    puts "Enter please the name of your list:"
+    your_own_wordlist = gets.chomp << ".txt"
+    puts_something
+    choosing_action(your_own_wordlist)
+    start_test_1_or_not
+    #####
+  elsif input == "6"
     puts ""
   else
     puts "You had made some mistake, enter number again please."
   end
 end
-
-#######
+    #######
 
 def puts_something
   puts ""
