@@ -65,14 +65,17 @@ def input_for_choosing_them(input)
   if input == "1"
     puts_something
     choosing_action("Git.txt")
+    start_test_1_or_not
     #####
   elsif input == "2"
     puts_something
     choosing_action("Computer.txt")
+    start_test_1_or_not
     #####
   elsif input == "3"
     puts_something
     choosing_action("Main_Terms.txt")
+    start_test_1_or_not
     #####
   elsif input == "4"
     own_wordlist
@@ -98,6 +101,20 @@ def choosing_action (zminnna)
     puts @lines
   end
 end
+
+
+def start_test_1_or_not
+  puts " "
+  puts "Do you want to continue making tests or still need to learn this words better?(yes/no)"
+  variable = gets.chomp
+  if variable.upcase == "YES".chomp
+    puts ""
+    task_1
+  else
+    return 0
+  end
+end
+
 
 def task_1
   puts "Here is a word and it's translation, enter please the English version five times."
