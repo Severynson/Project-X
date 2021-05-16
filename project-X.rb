@@ -4,13 +4,6 @@ puts "Hello, choose please the them that you are interested to learn:\n1- Git;\n
     print "\nYour choice:"
 my_gets = gets.chomp
 input_for_choosing_them(my_gets)
-num_that_have_some_function = "1"||"2"||"3"||"4"||"5"
-###
-while my_gets == num_that_have_some_function
-  my_gets = gets.chomp
-  input_for_choosing_them(my_gets)
-end
-
 ###This part of code turning on a first test if you ready to start###
     def start_test_1_or_not
     puts " "
