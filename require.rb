@@ -1,3 +1,4 @@
+require 'fileutils'
 #This method helps to add a new (your own) wordlist.
 def own_wordlist
   puts "Write the name of your new list:"
@@ -27,7 +28,6 @@ def own_wordlist
     file.write(eng_word)
 
     if en_word == "STOP - "
-
       file.close
       break
     end
@@ -56,6 +56,15 @@ def own_wordlist
       break
     end
   end
+  ###
+  removing_stopstop = File.open('output.txt', 'w') do |out_file|
+    File.foreach(name_of_file) do |line|
+      out_file.puts line unless line =~ /STOP/
+    end
+  end
+  FileUtils.mv('output.txt', name_of_file)
+  removing_stopstop.close()
+  ###
 end
 
 #######
@@ -79,15 +88,28 @@ def input_for_choosing_them(input)
     #####
   elsif input == "4"
     own_wordlist
+    return 0
     #####
   elsif input == "5"
+    puts "Enter please the name of your list:"
+    your_own_wordlist = gets.chomp << ".txt"
+    puts_something
+    choosing_action(your_own_wordlist)
+    start_test_1_or_not
+    #####
+  elsif input == "6"
     puts ""
   else
-    puts "You had made some mistake, enter number again please."
+    print "You had made some mistake, enter number again please:"
+    begin
+      raise "Incorrect input!"
+    rescue
+      my_gets = gets.chomp
+      input_for_choosing_them(my_gets)
+    end
   end
 end
-
-#######
+    #######
 
 def puts_something
   puts ""
