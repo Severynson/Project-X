@@ -63,7 +63,6 @@ def own_wordlist
     end
   end
   FileUtils.mv('output.txt', name_of_file)
-  removing_stopstop.close()
   ###
 end
 
@@ -72,29 +71,40 @@ end
 def input_for_choosing_them(input)
   #####
   if input == "1"
+    @variable_for_remembering_them = ""
+    @variable_for_remembering_them << "Git.txt"
     puts_something
-    choosing_action("Git.txt")
+    choosing_action(@variable_for_remembering_them)
     start_test_1_or_not
     #####
   elsif input == "2"
+    @variable_for_remembering_them = ""
+    @variable_for_remembering_them << "Computer.txt"
     puts_something
-    choosing_action("Computer.txt")
+    choosing_action(@variable_for_remembering_them)
     start_test_1_or_not
     #####
   elsif input == "3"
+    @variable_for_remembering_them = ""
+    @variable_for_remembering_them << "Main_Terms.txt"
     puts_something
-    choosing_action("Main_Terms.txt")
+    choosing_action(@variable_for_remembering_them)
     start_test_1_or_not
     #####
   elsif input == "4"
     own_wordlist
-    return 0
+    begin
+      raise "Don't go to the next time in this case!"
+    rescue StandardError => input4
+      return 0
+    end
     #####
   elsif input == "5"
     puts "Enter please the name of your list:"
-    your_own_wordlist = gets.chomp << ".txt"
+    @variable_for_remembering_them = ""
+    @variable_for_remembering_them << "#{gets.chomp}" << ".txt"
     puts_something
-    choosing_action(your_own_wordlist)
+    choosing_action(@variable_for_remembering_them)
     start_test_1_or_not
     #####
   elsif input == "6"
@@ -103,13 +113,13 @@ def input_for_choosing_them(input)
     print "You had made some mistake, enter number again please:"
     begin
       raise "Incorrect input!"
-    rescue
+    rescue StandardError => input6
       my_gets = gets.chomp
       input_for_choosing_them(my_gets)
     end
   end
 end
-    #######
+#######
 
 def puts_something
   puts ""
