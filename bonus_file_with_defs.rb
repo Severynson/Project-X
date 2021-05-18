@@ -119,7 +119,7 @@ def input_for_choosing_them(input)
     end
   end
 end
-#######
+    #######
 
 def puts_something
   puts ""
@@ -148,6 +148,9 @@ def start_test_1_or_not
 end
 
 
+#####################   This is s method for a first task   ###################
+
+
 def task_1
   puts "Here is a word and it's translation, enter please the English version five times."
   element_check = @lines.find_all do |el|
@@ -160,11 +163,112 @@ def task_1
     #   p variable_of_input
     # is_it_include_variable_of_input =
     #   write.include?(variable_of_input)
-    write = gets.upcase.chomp
+      write = gets.upcase.chomp
     while correct_word.include?(write) == false
+        puts " "
+        puts "Your made some mistake, enter please correct translation of word."
+        write = gets.upcase.chomp
+    end
+  end
+end
+
+
+
+#####################   That are methods for a second task   ###################
+
+def exercise_2
+choosing_action (@variable_for_remembering_them)
+element_check = @lines.each do |el|
+  user_input = Thread.new do
+    p el.upcase.split(" - ").last.chomp
+    @write = gets.upcase.chomp
+    Thread.current[:value] = gets.chomp
+  end
+
+  timer = Thread.new { sleep 6; user_input.kill; puts }
+
+  user_input.join
+  if user_input[:value]
+    puts "User entered #{user_input[:value]}"
+  else
+    puts "Timer expired"
+
+    if @write != "#{el.upcase.split(" ").first}"
       puts " "
       puts "Your made some mistake, enter please correct translation of word."
-      write = gets.upcase.chomp
+    elsif @write == "#{el.upcase.split(" ").first}"
+      puts "You are winner!"
+    end
+
+  end
+end
+end
+
+#####################   That are methods for a third task   ###################
+
+
+def mistake_first_in_exercise_3
+  first_letters = @el_incorrect.downcase.split("")
+  print "You write something incorrectly.\nChange this situation please.\nHere is the first letter of your word:\""
+  print first_letters[0].to_s
+  puts"\"."
+  ###
+  @write = gets.upcase.chomp
+  if @write == @el_incorrect.upcase.split(" - ").first.chomp
+    puts "Nice, you write correct."
+  else
+    mistake_second_in_exercise_3
+  end
+end
+###
+def mistake_second_in_exercise_3
+  first_letters = @el_incorrect.downcase.split("")
+  print "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\""
+  print first_letters[0..2].join
+  puts"\"."
+  ###
+  @write = gets.upcase.chomp
+  if @write == @el_incorrect.upcase.split(" - ").first.chomp
+    puts "Nice, you write correct."
+  else
+    mistake_third_in_exercise_3
+  end
+end
+###
+
+def mistake_third_in_exercise_3
+  half = (@el_incorrect.length - 1) / 2
+  first_letter = @el_incorrect.downcase.split("")
+  print "You write something incorrectly.\nChange this situation please.\nHere is the half of word that you need to write:\""
+  print first_letter[0..half].join
+  puts"\"."
+  ###
+  @write = gets.upcase.chomp
+  if @write == @el_incorrect.upcase.split(" - ").first.chomp
+    puts "Nice, you write correct."
+    #  This "elsif" is used for fixing a bug with writing
+    # a last line "Go and try to write correctly a next word."
+    # if there is no more words in list.
+  elsif @lines.last.upcase.include?(@el_incorrect)
+    puts "You made a mistake again!\nA correct word was: \"#{@el_incorrect}\"\nBut it was the last chance in writing of this word.\nIt was the last word in this list."
+  else
+    puts "You made a mistake again!\nA correct word was: \"#{@el_incorrect}\"\nBut it was the last chance in writing of this word.\nGo and try to write correctly a next word."
+  end
+end
+
+############################
+
+
+def exercise_3
+  choosing_action (@variable_for_remembering_them)
+  @lines.each do |el|
+    p el.upcase.split(" - ").last.chomp
+    @write = gets.upcase.chomp
+    if @write == el.upcase.split(" - ").first.chomp
+      puts "Nice, you write correct."
+    else
+      @el_incorrect = "" << el.upcase.split(" - ").first
+      mistake_first_in_exercise_3
     end
   end
 end
