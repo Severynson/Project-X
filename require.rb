@@ -153,19 +153,18 @@ def task_1
   element_check = @lines.find_all do |el|
     puts "***"
     p el.chomp
-    write = gets.upcase.chomp
 
-    while write != "#{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}, #{el.upcase.split(" - ").first.chomp}"
+    eng_word = "#{el.upcase.split(" - ").first.chomp}"
+    correct_word = ["#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}", "#{eng_word} #{eng_word} #{eng_word} #{eng_word} #{eng_word}", "#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}.", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}."]
+    #correct_word.each do |variable_of_input|
+    #   p variable_of_input
+    # is_it_include_variable_of_input =
+    #   write.include?(variable_of_input)
+    write = gets.upcase.chomp
+    while correct_word.include?(write) == false
       puts " "
       puts "Your made some mistake, enter please correct translation of word."
       write = gets.upcase.chomp
     end
-    #     if write == "#{el.split(" ").first}, #{el.split(" ").first}, #{el.split(" ").first}, #{el.split(" ").first}, #{el.split(" ").first}"
-    #       puts true
-    #     else
-    #       puts false
-    #     end
-    # else
-    #   return 0
   end
 end

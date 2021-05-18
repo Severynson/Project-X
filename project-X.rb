@@ -57,32 +57,16 @@ end
 puts "Nice, you had just done first part. Are you ready for next test?(yes/no)"
 choice_about_do_or_no_second_part = gets.upcase.chomp
 if choice_about_do_or_no_second_part == "YES"
+
   ##############
   ##############
   ##############
-  # def each_el_puts_part
-  # if value == user
-  #   puts "good2"
-  # elsif value != user
-  #   half = (value.length - 1) / 2
-  #   puts value[0..half].to_s
-  #   user = gets.chomp!
-  #   if value == user
-  #     puts "good3"
-  #   else
-  #     puts(value)
-  #
-  #   end
-  # end
-  # end
-  #
-  #
-  #
-  ############################
 
   def mistake_first
-    first_letter = @el_incorrect.upcase.split("")
-    puts "You write something incorrectly.\nChange this situation please.\nHere is the first letter of your word:\"#{first_letter[0]}\""
+    first_letters = @el_incorrect.downcase.split("")
+    print "You write something incorrectly.\nChange this situation please.\nHere is the first letter of your word:\""
+    print first_letters[0].to_s
+    puts"\"."
     ###
     @write = gets.upcase.chomp
     if @write == @el_incorrect.upcase.split(" - ").first.chomp
@@ -94,8 +78,10 @@ if choice_about_do_or_no_second_part == "YES"
 
   ###
   def mistake_second
-    first_letter = @el_incorrect.upcase.split("")
-    puts "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\"#{first_letter[0..2]}\""
+    first_letters = @el_incorrect.downcase.split("")
+    print "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\""
+    print first_letters[0..2].join
+    puts"\"."
     ###
     @write = gets.upcase.chomp
     if @write == @el_incorrect.upcase.split(" - ").first.chomp
@@ -107,16 +93,17 @@ if choice_about_do_or_no_second_part == "YES"
   ###
 
   def mistake_third
-    first_word = @el_incorrect.upcase.split(" - ").first.chomp
-    half = (first_word.length - 1) / 2
-    first_letter = @el_incorrect.upcase.split("")
-    puts "You write something incorrectly.\nChange this situation please.\nHere is the half of word that you need to write:\"#{first_letter[0..half]}\""
+    half = (@el_incorrect.length - 1) / 2
+    first_letter = @el_incorrect.downcase.split("")
+    print "You write something incorrectly.\nChange this situation please.\nHere is the half of word that you need to write:\""
+    print first_letter[0..half].join
+    puts"\"."
     ###
     @write = gets.upcase.chomp
     if @write == @el_incorrect.upcase.split(" - ").first.chomp
       puts "Nice, you write correct."
     else
-      puts "You made a mistake again!\nBut it was the third time.\nGo and try to write correctly a next word."
+      puts "You made a mistake again!\nHere is a correct word: \"#{@el_incorrect}\"\nBut it was the third time.\nGo and try to write correctly a next word."
     end
   end
 end
@@ -132,7 +119,8 @@ element_check = @lines.each do |el|
   if @write == el.upcase.split(" - ").first.chomp
     puts "Nice, you write correct."
   else
-    @el_incorrect = "" << el
+    @el_incorrect = "" << el.upcase.split(" - ").first
+    p @el_incorrect
     mistake_first
   end
 
