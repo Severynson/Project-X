@@ -3,9 +3,8 @@ load 'bonus_file_with_defs.rb'
 puts "Hello, choose please the them that you are interested to learn:\n1- Git;\n2- Computer;\n3- Main terms;\n4- Create your own list;\n5- If you wanna study your own list;\n6- If you want to skip this part."
     print "\nYour choice:"
 my_gets = gets.chomp
-input_for_choosing_them(my_gets)
+main_menu(my_gets)
 ###This part of code turning on a first test if you ready to start###
-    def start_test_1_or_not
     puts "\nDo you want to continue making tests or still need to learn this words better?(yes/no)"
     variable = gets.chomp
     if variable.upcase == "YES".chomp
@@ -13,7 +12,6 @@ input_for_choosing_them(my_gets)
       task_1
     else
       exit 0
-    end
     end
 ###This part of code turning on a second test if you ready to start###
 puts "Nice, you had just done first part. Are you ready for next test?(yes/no)"

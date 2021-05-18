@@ -1,5 +1,8 @@
+#################################################################################
+###########################    General methods    ###############################
+#################################################################################
 require 'fileutils'
-#This method helps to add a new (your own) wordlist.
+########    This method helps to add a new (your own) wordlist    #######
 def own_wordlist
   puts "Write the name of your new list:"
   name_of_file = gets.chomp.to_s.<<".txt"
@@ -66,30 +69,29 @@ def own_wordlist
   ###
 end
 
-#######
+#################################################################################
+########################    The main menu's method    ###########################
+#################################################################################
 
-def input_for_choosing_them(input)
+def main_menu(input)
   #####
   if input == "1"
     @variable_for_remembering_them = ""
     @variable_for_remembering_them << "Git.txt"
     puts_something
-    choosing_action(@variable_for_remembering_them)
-    start_test_1_or_not
+    read_this_file(@variable_for_remembering_them)
     #####
   elsif input == "2"
     @variable_for_remembering_them = ""
     @variable_for_remembering_them << "Computer.txt"
     puts_something
-    choosing_action(@variable_for_remembering_them)
-    start_test_1_or_not
+    read_this_file(@variable_for_remembering_them)
     #####
   elsif input == "3"
     @variable_for_remembering_them = ""
     @variable_for_remembering_them << "Main_Terms.txt"
     puts_something
-    choosing_action(@variable_for_remembering_them)
-    start_test_1_or_not
+    read_this_file(@variable_for_remembering_them)
     #####
   elsif input == "4"
     own_wordlist
@@ -104,8 +106,7 @@ def input_for_choosing_them(input)
     @variable_for_remembering_them = ""
     @variable_for_remembering_them << "#{gets.chomp}" << ".txt"
     puts_something
-    choosing_action(@variable_for_remembering_them)
-    start_test_1_or_not
+    read_this_file(@variable_for_remembering_them)
     #####
   elsif input == "6"
     puts ""
@@ -126,11 +127,11 @@ def puts_something
   puts "---List of words that you will meet in tests---"
 end
 
-def choosing_action (zminnna)
-  @lines = []
+def read_this_file (zminnna)
+  @array_with_strings_from_txt = []
   File.open(zminnna) do |review_file|
-    @lines = review_file.readlines
-    puts @lines
+    @array_with_strings_from_txt = review_file.readlines
+    puts @array_with_strings_from_txt
   end
 end
 
@@ -148,12 +149,17 @@ def start_test_1_or_not
 end
 
 
-#####################   This is s method for a first task   ###################
+#################################################################################
+###########################    Methods 4 exercises    ###########################
+#################################################################################
+
+
+#####################   This is s method for a first exercise   #################
 
 
 def task_1
   puts "Here is a word and it's translation, enter please the English version five times."
-  element_check = @lines.find_all do |el|
+  element_check = @array_with_strings_from_txt.find_all do |el|
     puts "***"
     p el.chomp
 
@@ -177,15 +183,15 @@ end
 #####################   That are methods for a second task   ###################
 
 def exercise_2
-choosing_action (@variable_for_remembering_them)
-element_check = @lines.each do |el|
+  read_this_file (@variable_for_remembering_them)
+  @array_with_strings_from_txt.each do |el|
   user_input = Thread.new do
     p el.upcase.split(" - ").last.chomp
     @write = gets.upcase.chomp
     Thread.current[:value] = gets.chomp
   end
 
-  timer = Thread.new { sleep 6; user_input.kill; puts }
+  Thread.new { sleep 6; user_input.kill; puts }
 
   user_input.join
   if user_input[:value]
@@ -249,7 +255,7 @@ def mistake_third_in_exercise_3
     #  This "elsif" is used for fixing a bug with writing
     # a last line "Go and try to write correctly a next word."
     # if there is no more words in list.
-  elsif @lines.last.upcase.include?(@el_incorrect)
+  elsif @array_with_strings_from_txt.last.upcase.include?(@el_incorrect)
     puts "You made a mistake again!\nA correct word was: \"#{@el_incorrect}\"\nBut it was the last chance in writing of this word.\nIt was the last word in this list."
   else
     puts "You made a mistake again!\nA correct word was: \"#{@el_incorrect}\"\nBut it was the last chance in writing of this word.\nGo and try to write correctly a next word."
@@ -260,8 +266,8 @@ end
 
 
 def exercise_3
-  choosing_action (@variable_for_remembering_them)
-  @lines.each do |el|
+  read_this_file (@variable_for_remembering_them)
+  @array_with_strings_from_txt.each do |el|
     p el.upcase.split(" - ").last.chomp
     @write = gets.upcase.chomp
     if @write == el.upcase.split(" - ").first.chomp
