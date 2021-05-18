@@ -3,12 +3,16 @@
 #################################################################################
 require 'fileutils'
 
-
 def puts_something
   puts ""
   puts "---List of words that you will meet in tests---"
 end
 
+# begin
+#   raise "Don't go to the next time in this case!"
+# rescue StandardError => input4
+#   return 0
+# end
 def read_this_file (file_to_read)
   @array_with_strings_from_txt = []
   File.open(file_to_read) do |review_file|
@@ -28,7 +32,6 @@ def start_test_1_or_not
     return 0
   end
 end
-
 
 #################################################################################
 ########################    The main menu's method    ###########################
@@ -56,18 +59,27 @@ def main_menu(input)
     #####
   elsif input == "4"
     own_wordlist
-    begin
-      raise "Don't go to the next time in this case!"
-    rescue StandardError => input4
-      return 0
-    end
+    # begin
+    #   raise "Don't go to the next time in this case!"
+    # rescue StandardError => input4
+    #   return 0
+    # end
     #####
   elsif input == "5"
-    puts "Enter please the name of your list:"
-    @variable_for_remembering_them = ""
-    @variable_for_remembering_them << "#{gets.chomp}" << ".txt"
-    puts_something
-    read_this_file(@variable_for_remembering_them)
+    def entering_the_name_of_your_own_list
+      puts "Enter please the name of your list:"
+      @variable_for_remembering_them = ""
+      @variable_for_remembering_them << "#{gets.chomp}" << ".txt"
+      if File.exist?(@variable_for_remembering_them)
+        puts_something
+        read_this_file(@variable_for_remembering_them)
+      else
+        print "Sorry, no such file in this directory. Enter again please:"
+        entering_the_name_of_your_own_list
+      end
+    end
+
+    entering_the_name_of_your_own_list
     #####
   elsif input == "6"
     puts ""
@@ -81,7 +93,6 @@ def main_menu(input)
     end
   end
 end
-
 
 ############    This method helps to add a new (your own) wordlist    ###########
 def own_wordlist
@@ -97,13 +108,15 @@ def own_wordlist
     en_word = gets
     eng_word = en_word.chomp.to_s.<< " - "
     eng_correction = en_word.ascii_only?
-    if eng_correction == false
+    while eng_correction == false
       puts eng_error_text
+      en_word = gets
     end
 
     eng_correction1 = en_word.is_a?(Integer)
-    if eng_correction1 == true
+    while eng_correction1 == true
       puts eng_error_text
+      en_word = gets
     end
     while eng_correction == false && eng_correction1 == true
       puts "Write English word:"
@@ -150,26 +163,19 @@ def own_wordlist
   ###
 end
 
-
 #################################################################################
 ###########################    Methods 4 exercises    ###########################
 #################################################################################
 
-
 #####################   This is s method for a first exercise   ##################
 
-def task_1
+def exercise_1
   puts "Here is a word and it's translation, enter please the English version five times."
-  element_check = @array_with_strings_from_txt.find_all do |el|
+  @array_with_strings_from_txt.find_all do |el|
     puts "***"
     p el.chomp
-
     eng_word = "#{el.upcase.split(" - ").first.chomp}"
     correct_word = ["#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}", "#{eng_word} #{eng_word} #{eng_word} #{eng_word} #{eng_word}", "#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}.", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}."]
-    #correct_word.each do |variable_of_input|
-    #   p variable_of_input
-    # is_it_include_variable_of_input =
-    #   write.include?(variable_of_input)
     write = gets.upcase.chomp
     while correct_word.include?(write) == false
       puts " "
@@ -177,6 +183,8 @@ def task_1
       write = gets.upcase.chomp
     end
   end
+  @exercise_1_is_done = []
+  @exercise_1_is_done << true
 end
 
 #####################   That are methods for a second exercise   ###################
@@ -200,7 +208,8 @@ def exercise_2
 
       if @write != "#{el.upcase.split(" ").first}"
         puts " "
-        puts "Your made some mistake, enter please correct translation of word."
+        puts "Correct word was: #{el.split(" - ").last.chomp}"
+        # puts "Your made some mistake, enter please correct translation of word."
       elsif @write == "#{el.upcase.split(" ").first}"
         puts "You are winner!"
       end
@@ -228,15 +237,19 @@ end
 ###
 def mistake_second_in_exercise_3
   first_letters = @el_incorrect.downcase.split("")
-  print "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\""
-  print first_letters[0..2].join
-  puts "\"."
-  ###
-  @write = gets.upcase.chomp
-  if @write == @el_incorrect.upcase.split(" - ").first.chomp
-    puts "Nice, you write correct."
+  if first_letters.include?([0..2])
+    print "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\""
+    print first_letters[0..2].join
+    puts "\"."
+    ###
+    @write = gets.upcase.chomp
+    if @write == @el_incorrect.upcase.split(" - ").first.chomp
+      puts "Nice, you write correct."
+    else
+      mistake_third_in_exercise_3
+    end
   else
-    mistake_third_in_exercise_3
+    puts "The correct word was:\"#{first_letters.join}\" \nThis word doesn't have more than three letters. If we will help you- it will be too easy."
   end
 end
 
