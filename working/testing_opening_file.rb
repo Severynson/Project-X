@@ -1,3 +1,4 @@
+
 hash = []
 File.open("Main_Terms.txt", "r+") do |file|
   hash = file.readlines
@@ -19,14 +20,14 @@ hash.find_all do |el|
       end
       puts first[0]
       user_word = gets.chomp!
-      if user_word == last
+      if user_word == first
         puts "Правильно з другої спроби"
-      else
+      elsif
         user_word != first
         length_of_half_word = (first.length - 1) / 2
         puts first[0..length_of_half_word].to_s
         user_word = gets.chomp!
-        if user_word == last
+        if user_word == first
           puts "Правильно з третьої спроби"
         else
           puts (first)
@@ -35,3 +36,4 @@ hash.find_all do |el|
     end
   end
 end
+
