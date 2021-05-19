@@ -1,3 +1,5 @@
+require 'fileutils'
+
 ###############Create The New List Part##############################################
 puts "Write the name of your new list:"
 name_of_file = gets.chomp.to_s.<<".txt"
@@ -54,3 +56,9 @@ loop do
     break
   end
 end
+removing_stopstop = File.open('output.txt', 'w') do |out_file|
+  File.foreach(name_of_file) do |line|
+    out_file.puts line unless line =~ /STOP/
+  end
+end
+FileUtils.mv('output.txt', name_of_file)
