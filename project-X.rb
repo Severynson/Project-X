@@ -11,8 +11,6 @@ loop do
   en_word = gets
   eng_word = en_word.chomp.to_s << " - "
 
-  # eng_correction = en_word.ascii_only?
-    
     eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
 
   while eng_correction1 == false
@@ -38,7 +36,6 @@ loop do
   ru_word = gets
   rus_word = ru_word.chomp.to_s.<<"\n"
 
-  # rus_correction = ru_word.ascii_only?
   rus_correction1 = ru_word.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
 
   while rus_correction1 == false
