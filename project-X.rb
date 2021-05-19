@@ -13,19 +13,24 @@ loop do
 
   # eng_correction = en_word.ascii_only?
 
-    eng_correction1 = en_word.is_a?(Integer)
+    eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
+  puts eng_correction1
 
-  while eng_correction1 == false
-    puts eng_error_text
-    en_word = gets
-    if eng_correction1 == true
+  until eng_correction1
+    eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
+    if eng_correction1 == false
+      puts eng_correction1
+      puts eng_error_text
+      en_word = gets
+    else
+      puts eng_correction1
       break
     end
   end
 
   file.write(eng_word)
 
-  if en_word == "STOP - "
+  if eng_word == "STOP - "
     file.close
     break
   end
