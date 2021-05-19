@@ -3,7 +3,6 @@
 #################################################################################
 require 'fileutils'
 
-
 def puts_something
   puts ""
   puts "---List of words that you will meet in tests---"
@@ -28,7 +27,6 @@ def start_test_1_or_not
     return 0
   end
 end
-
 
 #################################################################################
 ########################    The main menu's method    ###########################
@@ -82,79 +80,76 @@ def main_menu(input)
   end
 end
 
-
 ############    This method helps to add a new (your own) wordlist    ###########
+#Create The New List Part#
 def own_wordlist
-  puts "Write the name of your new list:"
-  name_of_file = gets.chomp.to_s.<< ".txt"
-  puts name_of_file
-  file = File.open(name_of_file, "w+")
-  eng_error_text = "Your word isn't English, please write English word"
-  rus_error_text = "Your word isn't Russian, please write Russian word"
-  loop do
+puts "Write the name of your new list:"
+name_of_file = gets.chomp.to_s.<< ".txt"
+puts name_of_file
+file = File.open(name_of_file, "w+")
+eng_error_text = "Your word isn't English, please write English word"
+rus_error_text = "Your word isn't Russian, please write Russian word"
 
-    puts "Write STOP if you wanna stop writing and save it\nWrite English word:"
-    en_word = gets
-    eng_word = en_word.chomp.to_s.<< " - "
-    eng_correction = en_word.ascii_only?
-    if eng_correction == false
-      puts eng_error_text
-    end
+#English Word Part#
 
-    eng_correction1 = en_word.is_a?(Integer)
-    if eng_correction1 == true
+loop do
+  puts "Write STOP if you wanna stop writing and save it\nWrite English word:"
+  en_word = gets
+  eng_word = en_word.chomp.to_s << " - "
+
+  eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
+
+  while eng_correction1 == false
+    eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
+    if eng_correction1 == false
       puts eng_error_text
-    end
-    while eng_correction == false && eng_correction1 == true
-      puts "Write English word:"
       en_word = gets
-    end
-    file.write(eng_word)
-
-    if eng_word == "STOP - "
-      file.close
+    else
       break
     end
+  end
+  eng_word = en_word.chomp.to_s << " - "
+  file.write(eng_word)
 
-    puts "Write STOP if you wanna stop writing and save it\nWrite Russian word:"
-    ru_word = gets
-    rus_word = ru_word.chomp.to_s.<< "\n"
+  if eng_word == "STOP - "
+    file.close
+    break
+  end
 
-    rus_correction = ru_word.ascii_only?
-    if rus_correction == true
+  #Russian Word Part#
+
+  puts "Write STOP if you wanna stop writing and save it\nWrite Russian word:"
+  ru_word = gets
+  rus_word = ru_word.chomp.to_s.<< "\n"
+
+  rus_correction1 = ru_word.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
+
+  while rus_correction1 == false
+    rus_correction1 = ru_word.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
+    if rus_correction1 == false
       puts rus_error_text
-    end
-
-    rus_correction1 = ru_word.is_a?(Integer)
-    if rus_correction1 == true
-      puts rus_error_text
-    end
-    file.write(rus_word)
-    while rus_correction == true && rus_correction1 == true
-      puts "Write Russian word:"
       ru_word = gets
-    end
-    if rus_word == "STOP\n"
-      #rus_word.freeze
-      file.close()
+    else
       break
     end
   end
-  ###
-  removing_stopstop = File.open('output.txt', 'w') do |out_file|
-    File.foreach(name_of_file) do |line|
-      out_file.puts line unless line =~ /STOP/
-    end
+  rus_word = ru_word.chomp.to_s.<< "\n"
+  file.write(rus_word)
+  if rus_word == "STOP\n"
+    file.close()
+    break
   end
-  FileUtils.mv('output.txt', name_of_file)
-  ###
 end
-
-
+File.open('output.txt', 'w') do |out_file|
+  File.foreach(name_of_file) do |line|
+    out_file.puts line unless line =~ /STOP/
+  end
+end
+FileUtils.mv('output.txt', name_of_file)
+end
 #################################################################################
 ###########################    Methods 4 exercises    ###########################
 #################################################################################
-
 
 #####################   This is s method for a first exercise   ##################
 
