@@ -12,22 +12,19 @@ loop do
   eng_word = en_word.chomp.to_s << " - "
 
   # eng_correction = en_word.ascii_only?
-
+    
     eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
-  puts eng_correction1
 
-  until eng_correction1
+  while eng_correction1 == false
     eng_correction1 = en_word.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
     if eng_correction1 == false
-      puts eng_correction1
       puts eng_error_text
       en_word = gets
     else
-      puts eng_correction1
       break
     end
   end
-
+  eng_word = en_word.chomp.to_s << " - "
   file.write(eng_word)
 
   if eng_word == "STOP - "
@@ -42,13 +39,18 @@ loop do
   rus_word = ru_word.chomp.to_s.<<"\n"
 
   # rus_correction = ru_word.ascii_only?
-  rus_correction1 = ru_word.is_a?(Integer)
+  rus_correction1 = ru_word.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
 
   while rus_correction1 == false
-    puts rus_error_text
-    ru_word = gets
+    rus_correction1 = ru_word.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
+    if rus_correction1 == false
+      puts rus_error_text
+      ru_word = gets
+    else
+      break
+    end
   end
-
+  rus_word = ru_word.chomp.to_s.<<"\n"
   file.write(rus_word)
   if rus_word == "STOP\n"
     file.close()
