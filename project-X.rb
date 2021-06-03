@@ -1,4 +1,4 @@
-load 'bonus_file_with_defs.rb'
+load 'file_with_methods_called_in_main_file_(project-X).rb'
 # This part of code had to show the main menu for user ###
 puts "Hello, choose please the them that you are interested to learn:"
 def offered_actions
