@@ -1,61 +1,74 @@
-class English_Words
-  attr_accessor :users_input, :word_with_addition, :name_of_file, :file, :error_text, :correction
+class OpenFile
+  attr_accessor :name_of_file, :file
 
-  error_text = "Your word isn't English, please write English word"
-  def create_new_list(name_of_file, file)
+  def self.open
     puts "Write the name of your new list:"
-    name_of_file = gets.chomp.to_s.<< ".txt"
-    puts "#{name_of_file} list was succesfully created!\n Remember! If you want to stop writing words, just write 'STOP'."
+    name_of_file = gets.chomp.to_s << ".txt"
+    puts "List #{name_of_file} was successfully created\nRemember! If you want to stop writing words and save the list, please write STOP or СТОП"
     file = File.open(name_of_file, "w+")
   end
 
-  puts "Write English word:"
+  # def initialize(file)
+  #   @file = file
+  # end
+end
 
-  loop do
-    if users_input == "STOP"
-      file.close
-      break
+class EnglishWords
+  attr_accessor :users_input, :users_input_with_addition, :correction
+
+  def self.checking
+    puts "Write English Word:"
+    users_input = gets.chomp
+    correction = users_input.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
+
+    if correction == false
+      puts "#{users_input} is not an English word!"
+      EnglishWords.checking
     end
 
-    def checking_input(users_input, correction)
-      users_input = gets
-      correction = users_input.match?(/[qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/i)
-      if correction == false
-        puts error_text
-        users_input = gets
-        self.checking_input
-      else
-        break
-      end
+    def self.writing_word_to_list
+    # users_input_with_addition = users_input.to_s << " - "
+    # @file.write(users_input_with_addition)
+    end
+
+    def self.stop
+      # if users_input == "STOP"
+      #   file.close()
+      # end
     end
   end
 end
-word = English_Word.new
-word_with_addition = word.chomp.to_s << " - "
-file.write(word_with_addition)
 
-class Russian_Word < English_Words
-  attr_accessor :correction, :error_text, :users_input, :word_with_addition
-  error_text = "Your word isn't Russian, please write Russian word"
+class RussianWords
+  attr_accessor :users_input, :users_input_with_addition, :correction
 
-  puts "Write Russian word:"
-  loop do
-    if users_input == "STOP"
-      file.close
-      break
-    end
+  def self.checking
+    puts "Write Russian Word:"
+    users_input = gets.chomp
+    correction = users_input.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
 
-    def checking_input(users_input, correction)
-      users_input = gets
-      correction = users_input.match?(/[йцукенгшщзхъфывапролджэячсмитьбюёЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ]/i)
-      if correction == false
-        puts error_text
-        users_input = gets
-        self.checking_input
-      else
-        break
-      end
+    if correction == false
+      puts "#{users_input} is not an Russian word!"
+      RussianWords.checking
     end
   end
 
+  def self.writing_word_to_list
+    # users_input_with_addition = users_input.to_s << "\n"
+    # @file.write(users_input_with_addition)
+  end
+
+  def self.stop
+    # if users_input == "СТОП"
+    #   file.close()
+    # end
+  end
+
+end
+
+
+OpenFile.open
+loop do
+EnglishWords.checking#.stop.writing_word_to_list
+RussianWords.checking#.stop.writing_word_to_list
 end
