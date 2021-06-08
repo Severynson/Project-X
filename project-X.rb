@@ -24,18 +24,22 @@ if @choice_in_main_menu != CREATING_NEW_LIST
   end
 
   puts "Nice, you had just done a first part. Are you ready for next test? Or want to skip? (yes/no)"
+  class LoadSecondPart < Exercise1
   choice_about_do_or_not_second_part = gets.upcase.chomp
-  if choice_about_do_or_not_second_part == "YES" && @is_an_exercise_1_done.include?(true)
+  if choice_about_do_or_not_second_part == "YES" && @@is_an_exercise_1_done.include?(true)
     puts "***\nExercise 2:"
     Exercise2.exercise_2
   end
+  end
 
   puts "Nice, you had just done a second part. Are you ready for the last test? Or want to skip? (yes/no)"
+  class LoadThirdPart < Exercise1
   choice_about_do_or_no_third_part = gets.upcase.chomp
-  if choice_about_do_or_no_third_part == "YES" && @is_an_exercise_1_done.include?(true)
+  if choice_about_do_or_no_third_part == "YES" && @@is_an_exercise_1_done.include?(true)
     puts "***\nExercise 3:"
     Exercise3.exercise_3
   elsif puts "Bye, have a nice day!"
   end
     puts "Thanks for using our app to make your english better! See you next time."
-end
+  end
+  end

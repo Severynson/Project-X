@@ -1,14 +1,14 @@
 class GeneralMethods
-  def self.puts_text
+  def puts_text
     puts ""
     puts "---List of words that you will meet in tests---"
   end
 
-  def self.file_reader (file_to_read)
-    @array_with_strings_from_txt = []
+  def file_reader (file_to_read)
+    @@array_with_strings_from_txt = []
     File.open(file_to_read) do |review_file|
-      @array_with_strings_from_txt = review_file.readlines
-      puts @array_with_strings_from_txt
+      @@array_with_strings_from_txt = review_file.readlines
+      puts @@array_with_strings_from_txt
     end
   end
 end
@@ -147,11 +147,11 @@ class CreateNewList
 
   #Methods 4 exercises
 
-class Exercise1
+class Exercise1 < GeneralMethods
   # This is s method for a first exercise
   def self.exercise_1
     puts "Here is a word and it's translation, enter please the English version five times.\n***"
-    @array_with_strings_from_txt.find_all do |el|
+    @@array_with_strings_from_txt.find_all do |el|
       p el.chomp
       eng_word = "#{el.upcase.split(" - ").first.chomp}"
       correct_word = ["#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}", "#{eng_word} #{eng_word} #{eng_word} #{eng_word} #{eng_word}", "#{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}, #{eng_word}.", "#{eng_word},#{eng_word},#{eng_word},#{eng_word},#{eng_word}."]
@@ -162,17 +162,16 @@ class Exercise1
         written_word = gets.upcase.chomp
       end
     end
-    @is_an_exercise_1_done = []
-    @is_an_exercise_1_done << true
+    @@is_an_exercise_1_done = []
+    @@is_an_exercise_1_done << true
   end
   end
 
 
-class Exercise2
+class Exercise2 < GeneralMethods
   # That are methods for a second exercise
   def self.exercise_2
-    GeneralMethods.file_reader (@variable_for_remembering_them)
-    @array_with_strings_from_txt.each do |el|
+    @@array_with_strings_from_txt.each do |el|
       user_input = Thread.new do
         p el.split(" - ").last.chomp
         @write = gets.upcase.chomp
@@ -198,7 +197,7 @@ class Exercise2
   end
   end
 
-  class Exercise3
+  class Exercise3 < GeneralMethods
   # That are methods for a third exercise
   def self.mistake_first_in_exercise_3
     first_letters = @el_incorrect.downcase.split("")
@@ -253,8 +252,7 @@ class Exercise2
   end
 
   def self.exercise_3
-    GeneralMethods.file_reader (@variable_for_remembering_them)
-    @array_with_strings_from_txt.each do |el|
+    @@array_with_strings_from_txt.each do |el|
       p el.upcase.split(" - ").last.chomp
       @write = gets.upcase.chomp
       if @write == el.upcase.split(" - ").first.chomp
