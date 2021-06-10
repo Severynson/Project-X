@@ -1,4 +1,4 @@
-  class Exercise3 < GeneralMethods
+class Exercise3 < GeneralMethods
   # That are methods for a third exercise
   def self.mistake_first_in_exercise_3
     first_letters = @el_incorrect.downcase.split("")
@@ -13,6 +13,7 @@
       mistake_second_in_exercise_3
     end
   end
+
   def self.mistake_second_in_exercise_3
     first_letters = @el_incorrect.downcase.split("")
     if first_letters.include?([0..2])
@@ -63,4 +64,4 @@
       end
     end
   end
-  end
+end

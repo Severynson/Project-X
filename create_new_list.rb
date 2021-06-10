@@ -72,4 +72,4 @@ class CreateNewList
     offered_actions
     your_choice_in_main_menu
   end
-  end
+end

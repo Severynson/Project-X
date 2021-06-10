@@ -1,5 +1,4 @@
 class Exercise2 < GeneralMethods
-  # That are methods for a second exercise
   def self.exercise_2
     @@array_with_strings_from_txt.each do |el|
       user_input = Thread.new do
@@ -18,11 +17,10 @@ class Exercise2 < GeneralMethods
         if @write != "#{el.upcase.split(" ").first}"
           puts " "
           puts "Correct word was: #{el.split(" - ").last.chomp}"
-          # puts "Your made some mistake, enter please correct translation of word."
         elsif @write == "#{el.upcase.split(" ").first}"
           puts "You are winner!"
         end
       end
     end
   end
-  end
+end

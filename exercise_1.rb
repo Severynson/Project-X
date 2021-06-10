@@ -16,4 +16,4 @@ class Exercise1 < GeneralMethods
     @@is_an_exercise_1_done = []
     @@is_an_exercise_1_done << true
   end
-  end
+end

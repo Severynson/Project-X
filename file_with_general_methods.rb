@@ -12,4 +12,5 @@ class GeneralMethods
     end
   end
 end
+
 GENERAL_METHODS = GeneralMethods.new
