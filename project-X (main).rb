@@ -1,12 +1,18 @@
-require './file_with_methods_called_in_main_file_(project-X).rb'
+require './file_with_general_methods.rb'
+load './main_menu.rb'
+load './create_new_list.rb'
+load './exercise_1.rb'
+load './exercise_2.rb'
+load './exercise_3.rb'
+class ProjectXMain
 # This part of code had to show the main menu for user ###
 puts "Hello, choose please the them that you are interested to learn:"
-def offered_actions
+def ProjectXMain.offered_actions
 puts "1- Git;\n2- Computer;\n3- Main terms;\n4- Create your own list;\n5- If you wanna study your own list;\n6- If you want to skip this part."
 print "\nYour choice:"
 end
 offered_actions
-def your_choice_in_main_menu
+def ProjectXMain.your_choice_in_main_menu
   @choice_in_main_menu = gets.chomp
   MainMenu.main_menu(@choice_in_main_menu)
 end
@@ -42,4 +48,5 @@ if @choice_in_main_menu != CREATING_NEW_LIST
   end
     puts "Thanks for using our app to make your english better! See you next time."
   end
-  end
+end
+end
