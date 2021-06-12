@@ -1,5 +1,9 @@
-class OpenFile
+class FileHelper
   attr_accessor :name_of_file, :file
+
+  def initialize(file)
+    @file = file
+  end
 
   def self.open
     puts "Write the name of your new list:"
@@ -8,13 +12,18 @@ class OpenFile
     file = File.open(name_of_file, "w+")
   end
 
-  # def initialize(file)
-  #   @file = file
-  # end
+  def self.close
+    file.close()
+  end
 end
 
 class EnglishWords
   attr_accessor :users_input, :users_input_with_addition, :correction
+
+  def initialize(users_input, users_input_with_addition)
+    @users_input = users_input
+    @users_input_with_addition = users_input_with_addition
+  end
 
   def self.checking
     puts "Write English Word:"
@@ -25,21 +34,13 @@ class EnglishWords
       puts "#{users_input} is not an English word!"
       EnglishWords.checking
     end
-
-    def self.writing_word_to_list
-    # users_input_with_addition = users_input.to_s << " - "
-    # @file.write(users_input_with_addition)
-    end
-
-    def self.stop
-      # if users_input == "STOP"
-      #   file.close()
-      # end
-    end
   end
+
+  users_input_with_addition = users_input.to_s << " - "
+
 end
 
-class RussianWords
+class RussianWords < EnglishWods
   attr_accessor :users_input, :users_input_with_addition, :correction
 
   def self.checking
@@ -52,23 +53,14 @@ class RussianWords
       RussianWords.checking
     end
   end
-
-  def self.writing_word_to_list
-    # users_input_with_addition = users_input.to_s << "\n"
-    # @file.write(users_input_with_addition)
-  end
-
-  def self.stop
-    # if users_input == "СТОП"
-    #   file.close()
-    # end
-  end
-
 end
 
 
-OpenFile.open
+FileHelper.open
+# eng_word = EnglishWords.new(users_input, file, users_input_with_addition)
+# eng_word.writing_word_to_list
 loop do
-EnglishWords.checking#.stop.writing_word_to_list
-RussianWords.checking#.stop.writing_word_to_list
+EnglishWords.checking
+RussianWords.checking
 end
+#   file.write(users_input_with_addition)
