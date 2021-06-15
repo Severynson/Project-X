@@ -1,4 +1,4 @@
-class CreateNewList
+module CreateNewList
   # This method helps to add a new (your own) wordlist
   require 'fileutils'
   #Create The New List Part

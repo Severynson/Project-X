@@ -1,6 +1,6 @@
 require './project-X (main).rb'
 
-class MainMenu
+module MainMenu
 
   def self.main_menu(input)
 

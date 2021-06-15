@@ -1,6 +1,6 @@
 class Exercise1 < GeneralMethods
   # This is s method for a first exercise
-  def self.exercise_1
+  def self.exercise
     puts "Here is a word and it's translation, enter please the English version five times.\n***"
     @@array_with_strings_from_txt.find_all do |el|
       p el.chomp
