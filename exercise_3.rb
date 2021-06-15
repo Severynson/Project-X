@@ -1,6 +1,6 @@
 class Exercise3 < GeneralMethods
   # That are methods for a third exercise
-  def self.mistake_first_in_exercise_3
+  def self.mistake_first_in_exercise
     first_letters = @el_incorrect.downcase.split("")
     print "You write something incorrectly.\nChange this situation please.\nHere is the first letter of your word:\""
     print first_letters[0].to_s
@@ -10,11 +10,11 @@ class Exercise3 < GeneralMethods
     if @write == @el_incorrect.upcase.split(" - ").first.chomp
       puts "Nice, you write correct."
     else
-      mistake_second_in_exercise_3
+      mistake_second_in_exercise
     end
   end
 
-  def self.mistake_second_in_exercise_3
+  def self.mistake_second_in_exercise
     first_letters = @el_incorrect.downcase.split("")
     if first_letters.include?([0..2])
       print "You write something incorrectly.\nChange this situation please.\nHere are the first three letters of your word:\""
@@ -25,14 +25,14 @@ class Exercise3 < GeneralMethods
       if @write == @el_incorrect.upcase.split(" - ").first.chomp
         puts "Nice, you write correct."
       else
-        mistake_third_in_exercise_3
+        mistake_third_in_exercise
       end
     else
       puts "The correct word was:\"#{first_letters.join}\" \nThis word doesn't have more than three letters. If we will help you- it will be too easy."
     end
   end
 
-  def self.mistake_third_in_exercise_3
+  def self.mistake_third_in_exercise
     half = (@el_incorrect.length - 1) / 2
     first_letter = @el_incorrect.downcase.split("")
     print "You write something incorrectly.\nChange this situation please.\nHere is the half of word that you need to write:\""
@@ -52,7 +52,7 @@ class Exercise3 < GeneralMethods
     end
   end
 
-  def self.exercise_3
+  def self.exercise
     @@array_with_strings_from_txt.each do |el|
       p el.upcase.split(" - ").last.chomp
       @write = gets.upcase.chomp
@@ -60,7 +60,7 @@ class Exercise3 < GeneralMethods
         puts "Nice, you write correct."
       else
         @el_incorrect = "" << el.upcase.split(" - ").first
-        mistake_first_in_exercise_3
+        mistake_first_in_exercise
       end
     end
   end

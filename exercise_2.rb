@@ -1,5 +1,5 @@
 class Exercise2 < GeneralMethods
-  def self.exercise_2
+  def self.exercise
     @@array_with_strings_from_txt.each do |el|
       user_input = Thread.new do
         p el.split(" - ").last.chomp

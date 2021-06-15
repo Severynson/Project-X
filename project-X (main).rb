@@ -1,4 +1,4 @@
-require './file_with_general_methods.rb'
+require './general_methods.rb'
 load './main_menu.rb'
 require './create_new_list.rb'
 require './exercise_1.rb'
@@ -24,7 +24,7 @@ if @choice_in_main_menu != CREATING_NEW_LIST
   choosing_to_continue_or_exit = gets.chomp
   if choosing_to_continue_or_exit.upcase == "YES".chomp
     puts "***\nExercise 1:"
-    Exercise1.exercise_1
+    Exercise1.exercise
   else
     exit 0
   end
@@ -34,7 +34,7 @@ if @choice_in_main_menu != CREATING_NEW_LIST
   choice_about_do_or_not_second_part = gets.upcase.chomp
   if choice_about_do_or_not_second_part == "YES" && @@is_an_exercise_1_done.include?(true)
     puts "***\nExercise 2:"
-    Exercise2.exercise_2
+    Exercise2.exercise
   end
   end
 
@@ -43,7 +43,7 @@ if @choice_in_main_menu != CREATING_NEW_LIST
   choice_about_do_or_no_third_part = gets.upcase.chomp
   if choice_about_do_or_no_third_part == "YES" && @@is_an_exercise_1_done.include?(true)
     puts "***\nExercise 3:"
-    Exercise3.exercise_3
+    Exercise3.exercise
   elsif puts "Bye, have a nice day!"
   end
     puts "Thanks for using our app to make your english better! See you next time."
