@@ -1,0 +1,10 @@
+Git - Гит
+Remote - Удалённый
+Workflow - Рабочий процесс
+Pull - Стянуть
+Push - Загрузить
+Branch - Ветка
+Repository - Репозиторий
+Remove - Удалить
+Add - Добавить
+Initialize - Инициализировать
